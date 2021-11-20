@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="WeatherAppXam.Views.HomePage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource BgTextBlueLight}">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Padding="15,25,15,10">
+            
+            <Grid Margin="0,30,0,30">
+                <Frame Padding="0" BackgroundColor="{StaticResource BgTextLightBlue}" CornerRadius="10">
+
+                    <StackLayout Margin="0,2,0,2">
+                        <StackLayout Padding="10,7,0,7" Orientation="Horizontal">
+                            <Image Source="icon_location" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" />
+                            <Label x:Name="lbLocation" Text="{Binding CurrentLocation}" FontSize="15" TextColor="{StaticResource BgTextBlue}"
+                                   HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <StackLayout BackgroundColor="{StaticResource BgTextWhite}" Margin="2,0,2,0">
+                        <StackLayout Grid.Row="1">
+
+                            <Grid>
+                                <StackLayout Grid.Column="0" BackgroundColor="Transparent">
+
+                                    <lottie:AnimationView
+                                        x:Name="animationView"
+                                        Animation="{Binding CurrentTempIcon}"
+                                        AnimationSource="EmbeddedResource"
+                                        AutoPlay="True"
+                                        BackgroundColor="Transparent"
+                                        RepeatCount="6"
+                                        RepeatMode="Infinite"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center" HeightRequest="140" WidthRequest="120" Margin="0"
+                                        />
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" BackgroundColor="Transparent" Orientation="Horizontal" >
+                                    <Label Text="{Binding CurrentTempC}" FontSize="70" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                                           TextColor="{StaticResource BgTextBlue}" VerticalTextAlignment="Center" />
+                                    <Label Text="C" FontSize="70" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                                           TextColor="{StaticResource BgTextBlue}" VerticalTextAlignment="Center" />
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+
+                        <Grid Grid.Row="2" Grid.ColumnSpan="2" Padding="7" Margin="0,0,0,4">
+                            <Grid>
+                                <StackLayout Spacing="0" Margin="0,0,0,0" Grid.Column="0" BackgroundColor="Transparent">
+                                    <Image Grid.Column="1" Source="icon_humidity_red" HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" />
+                                    <Label Text="{Binding CurrentHumidity}" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextBlue}"/>
+                                    <Label Text="Humidity" FontSize="Small" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextLightGray}" />
+                                </StackLayout>
+
+                                <StackLayout Spacing="0" Margin="0,0,0,0" Grid.Column="1" BackgroundColor="Transparent">
+                                    <Image Grid.Column="1" Source="icon_speed_red" HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" />
+                                    <Label Text="{Binding CurrentWindSpeed}" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextBlue}"/>
+                                    <Label Text="Wind Speed" FontSize="Small" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextLightGray}" />
+                                </StackLayout>
+
+                                <StackLayout Spacing="0" Margin="0,0,0,0" Grid.Column="2" BackgroundColor="Transparent">
+                                    <Image Grid.Column="1" Source="icon_compass_red" HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" />
+                                    <Label Text="{Binding CurrentWindDirection}" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextBlue}"/>
+                                    <Label Text="Wind Direction" FontSize="Small" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextLightGray}" />
+                                </StackLayout>
+
+                            </Grid>
+                        </Grid>
+                        </StackLayout>
+                        <StackLayout BackgroundColor="Transparent" Grid.Row="3" Grid.ColumnSpan="2" Padding="7">
+                            <Label x:Name="lbCondition" Text="{Binding CurrentDescription}" FontSize="15" TextColor="{StaticResource BgTextBlue}"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            
+            <!--<StackLayout Margin="0">
+                <Frame Padding="0" BackgroundColor="{StaticResource BgTextWhite}" BorderColor="{StaticResource BgTextBlue}" CornerRadius="10" HasShadow="False">
+                    <StackLayout Padding="10,7,0,7" Orientation="Horizontal">
+                        <Image Source="icon_location" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" />
+                        <Label x:Name="lbForecast" Text="Forecast" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource BgTextBlue}"
+                                   HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>-->
+            <Label Text="Forecast" TextColor="#f7f7f7" FontSize="22" Margin="5,0" />
+            <Grid Margin="0,7,0,30" Padding="2,0,2,2" HeightRequest="300">
+                
+                <Frame Padding="0" BackgroundColor="{StaticResource BgTextWhite}" CornerRadius="10" HasShadow="False">
+                    <StackLayout Margin="2,12,2,5">
+                        <StackLayout Padding="9,0,5,0" Margin="0,0,0,0">
+                        <CollectionView ItemsSource="{Binding SevenDaysSource}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="1" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame CornerRadius="5" Padding="0" Margin="0" BackgroundColor="Transparent" HasShadow="False">
+                                        <Grid Padding="0" VerticalOptions="Fill" ColumnSpacing="0" RowSpacing="5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto" />
+                                                <RowDefinition Height="auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding Day}" FontAttributes="Bold" FontSize="17" HorizontalTextAlignment="Start" Grid.ColumnSpan="2"
+                                               Padding="0" Margin="0" TextColor="{StaticResource BgTextBlue}" Grid.Column="0" VerticalTextAlignment="Center" />
+                                            
+                                                <Image  Source="{Binding Image}" HeightRequest="35" WidthRequest="40" Margin="0,1,2,0" Grid.Column="2"
+                                                        VerticalOptions="Center" HorizontalOptions="End"/>
+                                            
+                                            <Label Text="{Binding Humidity}" FontAttributes="Bold" FontSize="17" HorizontalTextAlignment="Start" 
+                                               Padding="0" TextColor="{StaticResource BgTextBlue}" Grid.Column="3" VerticalTextAlignment="Center" />
+
+                                            <Image  Source="icon_humidity" HeightRequest="20" WidthRequest="20" Margin="0,3,5,0" Grid.Column="4"
+                                                        VerticalOptions="Center" HorizontalOptions="End" />
+                                            
+                                                <Label Text="{Binding TempHighLow}" FontAttributes="Bold" FontSize="17" HorizontalTextAlignment="Start"
+                                               Padding="1" TextColor="{StaticResource BgTextBlue}" Grid.Column="5" VerticalTextAlignment="Center" />
+
+                                                <BoxView HeightRequest="1" Color="{StaticResource BgTextLightBlue}" 
+                                                            Grid.Row="2" Grid.ColumnSpan="6" Margin="0"/>
+                                                <!--<Line Stroke="red" X2="200" Grid.Row="2" HeightRequest="1" Grid.ColumnSpan="6" Margin="0" />-->
+                                                <!--<BoxView HeightRequest="1" WidthRequest="1" Color="#ccc" Grid.Row="2" Grid.ColumnSpan="6"
+                                 Margin="10,0,10,0"/>-->
+                                            </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        </StackLayout>
+
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+
+            <!--<Label Text="Forecast" FontSize="17" FontAttributes="Bold" TextColor="{StaticResource BgTextBlue}" Margin="5,0,0,0"
+                       HorizontalTextAlignment="Start"/>
+            <Grid Margin="0,0,0,30">
+
+                <Frame Padding="0" BackgroundColor="{StaticResource BgTextWhite}" BorderColor="{StaticResource BgTextBlue}" CornerRadius="10">
+                    <StackLayout Margin="2,2,2,0">
+                        <StackLayout BackgroundColor="{StaticResource BgTextLightBlue}" Padding="10,7,0,7" Orientation="Horizontal">
+                            <Image Source="search" HeightRequest="25" BackgroundColor="{StaticResource BgTextBlue}" WidthRequest="25" HorizontalOptions="Start" />
+                            <Label Text="No Recent Locations" FontSize="15" TextColor="{StaticResource BgTextBlue}" VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Start"/>
+                        </StackLayout>
+
+                        <StackLayout BackgroundColor="{StaticResource BgTextWhite}" Margin="2,0,2,0">
+                            <StackLayout Grid.Row="1">
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </Grid>-->
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\2566-thinking-lamp.json" />
+    <None Remove="Resources\35724-weather-day-rain.json" />
+    <None Remove="Resources\35749-weather-day-mist.json" />
+    <None Remove="Resources\4795-weather-mist.json" />
+    <None Remove="Resources\4800-weather-partly-cloudy.json" />
+    <None Remove="Resources\4801-weather-partly-shower.json" />
+    <None Remove="Resources\4803-weather-storm.json" />
+    <None Remove="Resources\4804-weather-sunny.json" />
+    <None Remove="Resources\50651-cloudy.json" />
+    <None Remove="Resources\50662-heavy-snow.json" />
+    <None Remove="Resources\61372-404-error-not-found.json" />
+    <None Remove="Resources\76622-weather.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\2566-thinking-lamp.json" />
+    <EmbeddedResource Include="Resources\35724-weather-day-rain.json" />
+    <EmbeddedResource Include="Resources\35749-weather-day-mist.json" />
+    <EmbeddedResource Include="Resources\4795-weather-mist.json" />
+    <EmbeddedResource Include="Resources\4800-weather-partly-cloudy.json" />
+    <EmbeddedResource Include="Resources\4801-weather-partly-shower.json" />
+    <EmbeddedResource Include="Resources\4803-weather-storm.json" />
+    <EmbeddedResource Include="Resources\4804-weather-sunny.json" />
+    <EmbeddedResource Include="Resources\50651-cloudy.json" />
+    <EmbeddedResource Include="Resources\50662-heavy-snow.json" />
+    <EmbeddedResource Include="Resources\61372-404-error-not-found.json" />
+    <EmbeddedResource Include="Resources\76622-weather.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.11" />
+    <PackageReference Include="MonkeyCache.FileStore" Version="1.5.2" />
+    <PackageReference Include="NewsAPI" Version="0.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NewsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SplashPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

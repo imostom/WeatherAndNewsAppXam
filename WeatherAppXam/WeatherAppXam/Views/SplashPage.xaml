@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="WeatherAppXam.Views.SplashPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <forms:AnimationView
+                x:Name="animationView"
+                Animation="resource://Resources.4804-weather-sunny.json"
+                AnimationSource="EmbeddedResource"
+                AutoPlay="true"
+                RepeatCount="3"
+                RepeatMode="Restart"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                />
+        </StackLayout>
+        <!--<Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,1">
+                        <GradientStop Color="Transparent" Offset="0" />
+                        <GradientStop Color="#223247" Offset="0.9" />
+                        --><!--<GradientStop Color="#023b02" Offset="0.9" />-->
+                        <!--<GradientStop Color="x2e4159" Offset="1" />--><!--
+                        <GradientStop Color="#223247" Offset="1" />
+                        <GradientStop Color="#223247" Offset="1" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+        </Grid>-->
+    </ContentPage.Content>
+</ContentPage>
