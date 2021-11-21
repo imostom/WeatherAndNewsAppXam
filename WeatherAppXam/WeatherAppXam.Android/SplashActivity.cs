@@ -21,17 +21,18 @@ namespace WeatherAppXam.Droid
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-            Thread.Sleep(4000);
+            //Thread.Sleep(1000);
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-            //SetContentView(Resource.Layout.splash);
-            //await SimulateStartu();
-        }
+        //protected override void OnResume()
+        //{
+        //    base.OnResume();
+        //    StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            
+        //    //SetContentView(Resource.Layout.splash);
+        //    //await SimulateStartu();
+        //}
 
         //private async Task SimulateStartu()
         //{

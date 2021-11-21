@@ -151,7 +151,7 @@ namespace WeatherAppXam.ViewModels
         public HomeViewModel()
         {
 
-            var currentCity = "Ontario";
+            var currentCity = "Lagos";
             
             LoadForecast(currentCity);
             //LoadLocationDetails(currentCity);

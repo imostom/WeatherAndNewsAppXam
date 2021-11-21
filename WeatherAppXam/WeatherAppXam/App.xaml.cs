@@ -32,5 +32,7 @@ namespace WeatherAppXam
         protected override void OnResume()
         {
         }
+
+        
     }
 }

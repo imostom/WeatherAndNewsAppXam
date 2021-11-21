@@ -14,17 +14,7 @@ namespace WeatherAppXam.Services
     public class BaseService
     {
         static HttpClient client;
-        public BaseService()//string BaseUrl)
-        {
-            //var location = Constants.WeatherApiBaseUrl;
-            //var BaseUrl = Constants.WeatherApiBaseUrl + Constants.WeatherApiForecastHourly.Replace("{PARAM}", location)
-            //        .Replace("{KEY}", Constants.WeatherApiKey).Replace("{AQI}", Constants.WeatherApiAQI).Replace("{ALERTS}", Constants.WeatherApiAlerts);
-            
-            //client = new HttpClient
-            //{
-            //    BaseAddress = new Uri(Constants.WeatherApiBaseUrl)
-            //};
-        }
+        
 
         public static async Task<T> GetAsync<T>(string url, string key, int mins = 1, bool forcceRefresh = false)
         {
@@ -52,6 +42,18 @@ namespace WeatherAppXam.Services
                 Debug.WriteLine($"Unable to get information from server {ex}");
                 throw ex;
             }
+        }
+
+        public void DoCleanUp()
+        {
+            //removes all data
+            //Barrel.Current.EmptyAll();
+
+            //removes all expired data
+            //Barrel.Current.EmptyExpired();
+
+            //param list of keys to flush
+            //Barrel.Current.Empty(key: url);
         }
     }
 }

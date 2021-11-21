@@ -4,10 +4,18 @@
              xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              x:Class="WeatherAppXam.Views.HomePage"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{StaticResource BgTextBlueLight}">
+             BackgroundColor="{StaticResource BgTextWhite}">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Padding="15,25,15,10">
-            
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Padding="15,13,15,10">
+            <Grid>
+                <Image Grid.Column="0" Grid.ColumnSpan="2" Source="icon_notification" HeightRequest="30" WidthRequest="30" HorizontalOptions="End">
+                    <!--<Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ShowFlyoutCommand}" />
+                    </Image.GestureRecognizers>-->
+                </Image>
+
+                <Image Grid.Column="1" Source="heartoutline" HeightRequest="40" WidthRequest="40" HorizontalOptions="End" />
+            </Grid>
             <Grid Margin="0,30,0,30">
                 <Frame Padding="0" BackgroundColor="{StaticResource BgTextLightBlue}" CornerRadius="10">
 
@@ -84,10 +92,10 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>-->
-            <Label Text="Forecast" TextColor="#f7f7f7" FontSize="22" Margin="5,0" />
+            <Label Text="Forecast" TextColor="{StaticResource BgTextBlueLight}" FontAttributes="Bold" FontSize="22" Margin="5,0" />
             <Grid Margin="0,7,0,30" Padding="2,0,2,2" HeightRequest="300">
                 
-                <Frame Padding="0" BackgroundColor="{StaticResource BgTextWhite}" CornerRadius="10" HasShadow="False">
+                <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="10" HasShadow="True">
                     <StackLayout Margin="2,12,2,5">
                         <StackLayout Padding="9,0,5,0" Margin="0,0,0,0">
                         <CollectionView ItemsSource="{Binding SevenDaysSource}">

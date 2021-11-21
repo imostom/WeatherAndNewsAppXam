@@ -4,8 +4,8 @@
 
 	<item>
 		<bitmap 
-			android:src="@drawable/icon_news" 
-			android:gravity="center" 
+			android:src="@drawable/wn_logo3" 
+			android:gravity="center_vertical" 
 			android:tileMode="disabled" />
 	</item>
 </layer-list>
