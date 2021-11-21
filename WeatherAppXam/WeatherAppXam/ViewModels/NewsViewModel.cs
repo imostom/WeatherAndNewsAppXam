@@ -27,7 +27,7 @@ namespace WeatherAppXam.ViewModels
 
         public NewsViewModel()
         {
-            string keyword = "apple";
+            string keyword = "technology";
             LoadNews(keyword);
         }
 
@@ -51,40 +51,6 @@ namespace WeatherAppXam.ViewModels
                             NewsDescription = v.Description,
                             NewsMore = v.Url,
                             Source = $"Source: {v.Source.Name}"
-                        });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                toast = DoToast("We encountered an error processing your request. Please try again.", "error");
-                await Application.Current.MainPage.DisplayToastAsync(toast);
-            }
-        }
-
-        public async void LoadNews2(string keyword)
-        {
-            try
-            {
-                //var newsResponse2 = NewsApiService.GetNews2(keyword);
-                //var newsResponse = NewsApiService.GetNews(keyword);
-                var newsResponse = NewsApiService.GetNewsFromWrapper(keyword);
-                NewsSource = new ObservableCollection<NewsDisplayModel>();
-
-                
-                if (newsResponse.totalResults > 0)
-                {
-                    foreach (var v in newsResponse.articles)
-                    {
-                        //var content = v.Content;
-                        NewsSource.Add(new NewsDisplayModel
-                        {
-                            NewsImage = v.UrlToImage,
-                            NewsTitle = v.Title,
-                            NewsDescription = v.Description,
-                            NewsMore = v.Url,
-                            Source =$"Source: {v.Source.Name}"
                         });
                     }
                 }

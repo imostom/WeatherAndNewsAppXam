@@ -150,18 +150,20 @@ namespace WeatherAppXam.ViewModels
 
         public HomeViewModel()
         {
-
-            var currentCity = "Lagos";
             
-            LoadForecast(currentCity);
+            
+            LoadForecast();
             //LoadLocationDetails(currentCity);
 
         }
 
-        private async void LoadForecast(string city)
+        private async void LoadForecast()
         {
             try
             {
+                var location = await BaseService.GetLocation("start");
+                var city = "Lagos";
+
                 var resource = Constants.WeatherApiForecast7days.Replace("{PARAM}", city).Replace("{DAYS}", "7")
                    .Replace("{KEY}", Constants.WeatherApiKey).Replace("{AQI}", Constants.WeatherApiAQI).Replace("{ALERTS}", Constants.WeatherApiAlerts);
                 var endpoint = $"{Constants.WeatherApiBaseUrl}{resource}";

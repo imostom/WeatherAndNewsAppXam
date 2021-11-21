@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace WeatherAppXam.Droid
 {
-    [Activity(Label = "WeatherNewsApp", MainLauncher =true, Theme = "@style/MyTheme.Splash", NoHistory =true)]
+    [Activity(Label = "Weather News", MainLauncher =true, Theme = "@style/MyTheme.Splash", NoHistory =true)]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

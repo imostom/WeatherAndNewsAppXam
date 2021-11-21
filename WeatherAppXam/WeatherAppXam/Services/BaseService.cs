@@ -5,9 +5,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using WeatherAppXam.Models;
+using WeatherAppXam.ViewModels;
+using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.CommunityToolkit.UI.Views.Options;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace WeatherAppXam.Services
 {
@@ -54,6 +58,77 @@ namespace WeatherAppXam.Services
 
             //param list of keys to flush
             //Barrel.Current.Empty(key: url);
+        }
+
+        public static async Task<Location> GetLocation(string type)
+        {
+            var location = new Location();
+            var toast = new ToastOptions();
+            CancellationTokenSource cts;
+            try
+            {
+                if (type == "start")
+                {
+                    if (location != null)
+                    {
+                        location = await Geolocation.GetLastKnownLocationAsync();
+                    }
+                    else
+                    {
+                        location = await GetCurrentLocationAsync();
+                    }
+                }
+                else if (type == "refresh")
+                {
+                    location = await GetCurrentLocationAsync();
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+                toast = new BaseViewModel().DoToast("Location feature not supported on device. Please use the search feature", "error");
+                await Application.Current.MainPage.DisplayToastAsync(toast);
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+                toast = new BaseViewModel().DoToast("Location not enabled on device.", "error");
+                await Application.Current.MainPage.DisplayToastAsync(toast);
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+                toast = new BaseViewModel().DoToast("Access to current location is not granted.", "error");
+                await Application.Current.MainPage.DisplayToastAsync(toast);
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+                toast = new BaseViewModel().DoToast("Unable to get current location.", "error");
+                await Application.Current.MainPage.DisplayToastAsync(toast);
+            }
+
+            return location;
+        }
+
+
+        private static async Task<Location> GetCurrentLocationAsync()
+        {
+            var location = new Location();
+            CancellationTokenSource cts;
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                cts = new CancellationTokenSource();
+                location = await Geolocation.GetLocationAsync(request, cts.Token);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return location;
         }
     }
 }
