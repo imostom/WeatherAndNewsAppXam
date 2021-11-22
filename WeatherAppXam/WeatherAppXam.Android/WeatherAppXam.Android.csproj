@@ -35,7 +35,7 @@
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>false</DebugSymbols>
     <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
@@ -43,6 +43,13 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <BundleAssemblies>true</BundleAssemblies>
+    <AotAssemblies>true</AotAssemblies>
+    <EnableLLVM>true</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <AndroidKeyStore>false</AndroidKeyStore>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
