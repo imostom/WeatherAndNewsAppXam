@@ -9,7 +9,7 @@
         <ScrollView>
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Padding="15,13,15,10">
             <Grid>
-                <Image Grid.Column="0" Grid.ColumnSpan="2" Source="icon_notification" HeightRequest="30" WidthRequest="30" HorizontalOptions="End">
+                <Image Grid.Column="0" Grid.ColumnSpan="2" Source="icon_notification" HeightRequest="27" WidthRequest="27" HorizontalOptions="End">
                     <!--<Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ShowFlyoutCommand}" />
                     </Image.GestureRecognizers>-->
@@ -17,7 +17,7 @@
 
                 <Image Grid.Column="1" Source="heartoutline" HeightRequest="40" WidthRequest="40" HorizontalOptions="End" />
             </Grid>
-            <Grid Margin="0,30,0,30">
+            <Grid Margin="0,18,0,30">
                 <Frame Padding="0" BackgroundColor="{StaticResource BgTextLightBlue}" CornerRadius="10">
 
                     <StackLayout Margin="0,2,0,2">
@@ -45,9 +45,9 @@
                                         />
                                 </StackLayout>
                                 <StackLayout Grid.Column="1" BackgroundColor="Transparent" Orientation="Horizontal" >
-                                    <Label Text="{Binding CurrentTempC}" FontSize="70" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                                    <Label Text="{Binding CurrentTempC}" FontSize="60" FontAttributes="Bold" HorizontalTextAlignment="Start" HorizontalOptions="Start"
                                            TextColor="{StaticResource BgTextBlue}" VerticalTextAlignment="Center" />
-                                    <Label Text="C" FontSize="70" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                                    <Label Text="C" FontSize="40" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="Center"
                                            TextColor="{StaticResource BgTextBlue}" VerticalTextAlignment="Center" />
                                 </StackLayout>
                             </Grid>

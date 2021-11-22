@@ -162,9 +162,10 @@ namespace WeatherAppXam.ViewModels
             try
             {
                 var location = await BaseService.GetLocation("start");
-                var city = "Lagos";
+                var placemarkResult = await BaseService.ReverseGeocode(location.Longitude, location.Latitude);
+                //var city = "Lagos";
 
-                var resource = Constants.WeatherApiForecast7days.Replace("{PARAM}", city).Replace("{DAYS}", "7")
+                var resource = Constants.WeatherApiForecast7days.Replace("{PARAM}", placemarkResult.Locality).Replace("{DAYS}", "7")
                    .Replace("{KEY}", Constants.WeatherApiKey).Replace("{AQI}", Constants.WeatherApiAQI).Replace("{ALERTS}", Constants.WeatherApiAlerts);
                 var endpoint = $"{Constants.WeatherApiBaseUrl}{resource}";
 

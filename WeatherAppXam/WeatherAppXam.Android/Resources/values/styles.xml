@@ -21,11 +21,11 @@
 		<item name="windowActionModeOverlay">true</item>
 
 		<!-- colorPrimary is used for the default action bar background -->
-		<item name="colorPrimary">#e128ff</item>
+		<item name="colorPrimary">#ffffff</item>
 		<!-- colorPrimaryDark is used for the status bar -->
 		<item name="colorPrimaryDark">#0E3752</item>
 		<!-- colorAccent is used as the default value for colorControlActivated which is used to tint widgets -->
-		<item name="colorAccent">#FF4081</item>
+		<!--<item name="colorAccent">#FF4081</item>-->
 	</style>
 	<style name="MyTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="android:windowBackground">@drawable/launch_screen</item>

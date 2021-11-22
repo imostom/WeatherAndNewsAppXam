@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -129,6 +130,32 @@ namespace WeatherAppXam.Services
             }
 
             return location;
+        }
+
+        public static async Task<Placemark> ReverseGeocode(double longitude, double latitude)
+        {
+            var resultPlacemark = new Placemark();
+            try
+            {
+                var location = new Location
+                {
+                    Longitude = 41.40338,
+                    Latitude = 2.17403
+                };
+                var result = await Geocoding.GetPlacemarksAsync(latitude, longitude);
+
+                //Position position = new Position(37.8044866, -122.4324132);
+                if (result.Any())
+                {
+                    resultPlacemark = result.FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return resultPlacemark;
         }
     }
 }
