@@ -161,8 +161,11 @@ namespace WeatherAppXam.ViewModels
         {
             try
             {
+                //var salt = await CryptographyService.GenerateSalt();
+                
                 var location = await BaseService.GetLocation("start");
                 var placemarkResult = await BaseService.ReverseGeocode(location.Longitude, location.Latitude);
+                //var encLocality = CryptographyUtil.EncryptText(placemarkResult.Locality, Constants.EncryptionPassword, Constants.Salt);
                 //var city = "Lagos";
 
                 var resource = Constants.WeatherApiForecast7days.Replace("{PARAM}", placemarkResult.Locality).Replace("{DAYS}", "7")
@@ -180,9 +183,6 @@ namespace WeatherAppXam.ViewModels
                 else
                 {
                     SevenDaysSource = new ObservableCollection<SevenDaysDataModel>();
-                    //var forecastData = forecastResponse.forecast.forecastday;
-                    //var currentData = forecastResponse;
-
 
                     //FORECAST
                     foreach (var v in forecastResponse.forecast.forecastday)
@@ -219,8 +219,6 @@ namespace WeatherAppXam.ViewModels
                     else
                         CurrentTempIcon = tempIcon;
 
-
-                   
                 }
             }
             catch (Exception ex)

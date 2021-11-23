@@ -22,5 +22,8 @@ namespace WeatherAppXam.Models
 
         public static string NewsApiWrapperBaseUrl = "https://newsapiorgwrapper.azurewebsites.net";
         public static string NewsApiWrapperEndpoint = "/news/fetch?city={keyword}";
+
+        public static string EncryptionPassword = "!H6_#2dGgdt@qkI12";
+        public static string Salt = "W9QYQ/rGqPUigZAzOhbzvH+nScenYqvT0NpQP3M43c8oMxqEQCETjyzqnT36NLuypSs=";
     }
 }
