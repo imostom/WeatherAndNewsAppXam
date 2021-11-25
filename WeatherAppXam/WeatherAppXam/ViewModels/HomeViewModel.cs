@@ -150,17 +150,20 @@ namespace WeatherAppXam.ViewModels
 
         public HomeViewModel()
         {
-            
-            
+            //LoadOpenWeatherForecast();
+
             LoadForecast();
             //LoadLocationDetails(currentCity);
 
         }
 
+        
+
         private async void LoadForecast()
         {
             try
             {
+                
                 //var salt = await CryptographyService.GenerateSalt();
                 
                 var location = await BaseService.GetLocation("start");

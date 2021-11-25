@@ -10,17 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace WeatherAppXam.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewsPage : ContentPage
+    public partial class ForecastPage : ContentPage
     {
-        public NewsPage()
+        public ForecastPage()
         {
             InitializeComponent();
-            BindingContext = new NewsViewModel();
-        }
-
-        private void NewsItem_Tapped(object sender, EventArgs e)
-        {
-            new NewsViewModel().NewsItem_Tapped(e);
+            BindingContext = new ForecastViewModel();
         }
     }
 }

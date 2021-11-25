@@ -16,5 +16,8 @@ namespace WeatherAppXam.Services
 
         public static Task<NewsApiModel> GetNews(string endpoint) =>
            GetAsync<NewsApiModel>(endpoint, "getnews");
+
+        public static Task<OpenWeatherApiModel> GetForecastOpenWeather(string endpoint) =>
+           GetAsync<OpenWeatherApiModel>(endpoint, "forecastopenweather");
     }
 }

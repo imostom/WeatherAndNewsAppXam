@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeatherAppXam.Models;
 using WeatherAppXam.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,17 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace WeatherAppXam.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewsPage : ContentPage
+    public partial class NewsPopupPage 
     {
-        public NewsPage()
+        public NewsPopupPage(string tappedItem, ObservableCollection<NewsDisplayModel> newsObjects)
         {
             InitializeComponent();
-            BindingContext = new NewsViewModel();
-        }
-
-        private void NewsItem_Tapped(object sender, EventArgs e)
-        {
-            new NewsViewModel().NewsItem_Tapped(e);
+            BindingContext = new NewsPopupViewModel(tappedItem, newsObjects);
         }
     }
 }

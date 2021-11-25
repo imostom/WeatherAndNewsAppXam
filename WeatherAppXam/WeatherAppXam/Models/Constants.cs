@@ -25,5 +25,12 @@ namespace WeatherAppXam.Models
 
         public static string EncryptionPassword = "!H6_#2dGgdt@qkI12";
         public static string Salt = "W9QYQ/rGqPUigZAzOhbzvH+nScenYqvT0NpQP3M43c8oMxqEQCETjyzqnT36NLuypSs=";
+
+        //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+        public static string OpenWeatherApiBaseUrl = "https://api.openweathermap.org/data/2.5";
+        public static string OpenWeatherApiOneCallEndpoint = "/onecall?lat={lat}&lon={lon}&appid={APIkey}&units=metric";
+        //public static string OpenWeatherApiOneCallEndpoint = "/onecall?lat={lat}&lon={lon}&exclude={part}&appid={APIkey}";
+        public static string OpenWeatherApiCurrentEndpoint = "/weather?q={city name}&appid={APIkey}";
+        public static string OpenWeatherApiKey = "e111016c4c4dbc4ca07f9809f63095a7";
     }
 }

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage  xmlns:popup="http://rotorgames.com" 
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                  x:Class="WeatherAppXam.Views.NewsPopupPage"
+                  Visual="Material">
+                  
+
+    <popup:PopupPage.Animation>
+        <popup:ScaleAnimation 
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+           
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </popup:PopupPage.Animation>
+
+    <!--#223247-->
+    <StackLayout BackgroundColor="#fff" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                 Margin="0" Spacing="10" Padding="2,2,2,20">
+
+
+        <StackLayout x:Name="StackStep3">
+            <Frame CornerRadius="0" Margin="0" HasShadow="False">
+                <StackLayout>
+                    <Image Source="pin" WidthRequest="100" Margin="0,0,0,15" BackgroundColor="#fff" />
+
+                    <Entry x:Name="txtPin" Placeholder="Enter Pin" BackgroundColor="White" Grid.Row="2" ReturnType="Done"
+                           Grid.ColumnSpan="5" Text="{Binding Pin}" FontSize="Medium" Keyboard="Numeric" IsPassword="True">
+                        <Entry.Behaviors>
+                            <xct:NumericValidationBehavior InvalidStyle="{StaticResource InvalidStyle}" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Entry x:Name="txtReconfirmPin" Placeholder="Re-Enter Pin" BackgroundColor="White" Grid.Row="3" ReturnType="Done"
+                           Grid.ColumnSpan="5" Text="{Binding ConfirmPin}" FontSize="Medium" Keyboard="Numeric" IsPassword="True">
+                        <Entry.Behaviors>
+                            <xct:NumericValidationBehavior InvalidStyle="{StaticResource InvalidStyle}" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Button Text="Proceed" BackgroundColor="#223247" Command="{Binding UpdatePinCommand}" CornerRadius="5" Grid.Row="5" 
+                            Grid.Column="0" Grid.ColumnSpan="5" Margin="0,10,0,0" FontSize="Small"/>
+
+                    <Button Text="close" BackgroundColor="Transparent" TextColor="#223247" Command="{Binding ClosePopupCommand}" CornerRadius="5" Grid.Row="6" 
+                            Grid.Column="0" Grid.ColumnSpan="5" Margin="0,10,0,0" FontSize="Small"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </StackLayout>
+
+</popup:PopupPage>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherAppXam.Views.Home2Page"
+             BackgroundColor="{StaticResource BgTextDeepBlue}">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource BgTextDeepBlue}" Padding="15,13,15,10">
+            <ActivityIndicator VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IndicatorVisibility}" IsRunning="{Binding IsLoading}" 
+                                       HeightRequest="40" Grid.Row="4" Grid.Column="4" Color="{StaticResource BgTextYellow2}" Margin="0,5,0,0" />
+            
+            <Grid Margin="0,18,0,10">
+                <Frame Padding="0" BackgroundColor="{StaticResource BgTextDeepBlueLight}" CornerRadius="10">
+
+                    <StackLayout Margin="0,2,0,2">
+                        <StackLayout Padding="10,7,0,7" Orientation="Horizontal">
+                            <Image Source="icon_location2" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" />
+                            <Label x:Name="lbLocation" Text="{Binding CurrentLocation}" FontSize="15" TextColor="{StaticResource BgTextWhite}"
+                                   HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontAttributes="None"/>
+                        </StackLayout>
+                        <StackLayout BackgroundColor="Transparent" Margin="2,15,2,15">
+                            <StackLayout Grid.Row="1">
+
+                                <Grid>
+                                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Transparent">
+
+                                        <Image Source="{Binding CurrentTempIcon}" HeightRequest="140" WidthRequest="120" VerticalOptions="Center" />
+
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="Center" >
+                                        <Label Text="{Binding CurrentTempC}" FontSize="68" FontAttributes="Bold" HorizontalTextAlignment="Start" HorizontalOptions="End"
+                                           TextColor="{StaticResource BgTextWhite}" VerticalTextAlignment="Center" />
+                                        <Label Text="°C" FontSize="38" FontAttributes="None" HorizontalTextAlignment="Start" HorizontalOptions="End" Margin="0,4,0,0"
+                                           TextColor="{StaticResource BgTextWhite}" VerticalTextAlignment="Center" />
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+
+                            <Grid Grid.Row="2" Grid.ColumnSpan="2" Padding="7" Margin="0,30,0,4">
+                                <Grid>
+                                    <StackLayout Spacing="0" Margin="0,0,0,0" Grid.Column="0" BackgroundColor="Transparent">
+                                        <Label Text="Humidity" FontSize="Small" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextYellow2}" Margin="0,0,0,5" />
+                                        <Label Text="{Binding CurrentHumidity}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextWhite}"/>
+
+                                    </StackLayout>
+
+                                    <StackLayout Spacing="0" Margin="0,0,0,0" Grid.Column="1" BackgroundColor="Transparent">
+                                        <Label Text="Wind Speed" FontSize="Small" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextYellow2}" Margin="0,0,0,5" />
+                                        <Label Text="{Binding CurrentWindSpeed}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextWhite}"/>
+
+                                    </StackLayout>
+
+                                    <StackLayout Spacing="0" Margin="0,0,0,0" Grid.Column="2" BackgroundColor="Transparent">
+                                        <Label Text="Wind Degree" FontSize="Small" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextYellow2}" Margin="0,0,0,5" />
+                                        <Label Text="{Binding CurrentWindDirection}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource BgTextWhite}"/>
+
+                                    </StackLayout>
+
+                                </Grid>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout BackgroundColor="Transparent" Grid.Row="3" Grid.ColumnSpan="2" Padding="5,5,5,15">
+                            <Label x:Name="lbCondition" Text="{Binding CurrentDescription}" FontSize="16" TextColor="{StaticResource BgTextWhite}"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+
+            <!--<Grid Margin="0,18,0,30">
+                <Frame Padding="0" BackgroundColor="{StaticResource BgTextDeepBlueLight}" CornerRadius="10">
+
+                    <StackLayout Margin="0,2,0,2">
+
+                    </StackLayout>
+                </Frame>
+            </Grid>-->
+
+            <StackLayout Margin="0,18,0,10">
+                <Frame Padding="0" BackgroundColor="{StaticResource BgTextDeepBlueLight}" CornerRadius="10">
+                    <StackLayout HeightRequest="180" Padding="10">
+                        <Label Text="48-Hour Forecast" FontAttributes="Bold" FontSize="20" Padding="5,0,0,0" TextColor="{StaticResource BgTextYellow2}" />
+                        <Frame CornerRadius="10" Padding="5" Margin="0" BackgroundColor="Transparent" HasShadow="False">
+                            <CollectionView ItemsSource="{Binding HourlySource}">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame CornerRadius="5" Padding="5" Margin="0" BackgroundColor="Transparent" HasShadow="False">
+                                            <Grid Padding="3" BackgroundColor="Transparent" VerticalOptions="Fill" ColumnSpacing="0" RowSpacing="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackLayout Padding="5,0,5,5" Margin="0" Spacing="1" VerticalOptions="Center" BackgroundColor="Transparent">
+
+                                                    <!--<StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding Time}" />
+                                            </StackLayout.GestureRecognizers>-->
+
+
+                                                    <Image  Source="{Binding Image}" HeightRequest="50" WidthRequest="50" Margin="0,0,2,0" />
+                                                    
+                                                    <Label Text="{Binding Temp}" FontAttributes="Italic" FontSize="Medium" HorizontalTextAlignment="Center" 
+                                               Padding="1" TextColor="{StaticResource BgTextWhite}" Margin="5" />
+
+                                                    <Label Text="{Binding Time}" FontAttributes="None" FontSize="Medium" HorizontalTextAlignment="Center" 
+                                               Padding="2" Margin="0,0,2,0" TextColor="White" />
+                                                    <!--<Label Text="{Binding FahrenheitTemp}" FontAttributes="Italic" FontSize="Medium" HorizontalTextAlignment="Center"
+                                               Padding="1" TextColor="White" />-->
+                                                </StackLayout>
+
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
