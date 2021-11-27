@@ -11,8 +11,11 @@ namespace WeatherAppXam
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+
+            Routing.RegisterRoute("forecast", typeof(ForecastPage));
+
+            //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
 
     }

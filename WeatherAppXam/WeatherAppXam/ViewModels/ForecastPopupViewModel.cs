@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using System.Threading.Tasks;
 using WeatherAppXam.Models;
 using WeatherAppXam.Services;
 using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Location = Xamarin.Essentials.Location;
 
 namespace WeatherAppXam.ViewModels
 {
-    public class Home2ViewModel : BaseViewModel
+    public class ForecastPopupViewModel : BaseViewModel
     {
-        private bool _isLoading, _isVisible;
+        private bool _isLoading, _isVisible, _searchStackVisible;
         public string TempMetric
         {
             get
@@ -175,6 +176,15 @@ namespace WeatherAppXam.ViewModels
                 OnPropertyChanged("IsLoading");
             }
         }
+        public bool SearchStackVisible
+        {
+            get => _searchStackVisible;
+            set
+            {
+                _searchStackVisible = value;
+                OnPropertyChanged("SearchStackVisible");
+            }
+        }
 
         public string tempMetric { get; set; }
         public string dateLocation { get; set; }
@@ -191,52 +201,28 @@ namespace WeatherAppXam.ViewModels
         public ObservableCollection<SevenDaysDataModel> sevenDaysSource { get; set; }
 
 
-        public Home2ViewModel()
+        public ForecastPopupViewModel()
         {
-            ShowLoader();
-
             LoadOpenWeatherForecast();
         }
 
-        private async void ShowLoader()
-        {
-            IsLoading = true;
-            IndicatorVisibility = true;
-            await Task.Delay(1000);
-
-        }
 
         public async void LoadOpenWeatherForecast()
         {
             try
             {
-                var location = await BaseService.GetLocation("start");
-                if (location == null)
-                {
-                    location = new Xamarin.Essentials.Location
-                    {
-                        Latitude = 37.386051,
-                        Longitude = -122.083855
-                    };
-                }
-
-                var placemarkResult = await BaseService.ReverseGeocode(location.Longitude, location.Latitude);
-
-                var resource = Constants.OpenWeatherApiOneCallEndpoint.Replace("{lat}", location.Latitude.ToString())
-                    .Replace("{lon}", location.Longitude.ToString()).Replace("{APIkey}", Constants.OpenWeatherApiKey);
-                var endpoint = $"{Constants.OpenWeatherApiBaseUrl}{resource}";
                 HourlySource = new ObservableCollection<OpenWeatherHourly>();
                 SevenDaysSource = new ObservableCollection<SevenDaysDataModel>();
 
-                var forecastResponse = await ApiService.GetForecastOpenWeather(endpoint);
-                if (forecastResponse != null)
+                if (CurrentReport != null && HourlyReport != null && DailyReport != null)
                 {
-                    IsLoading = false;
-                    IndicatorVisibility = false;
+                    //IsLoading = false;
+                    //IndicatorVisibility = false;
                     TempMetric = "°C";
 
+
                     //Hourly Forecast
-                    foreach (var v in forecastResponse.hourly)
+                    foreach (var v in HourlyReport)
                     {
                         var date = BaseService.UnixTimeStampToDateTime(Convert.ToDouble(v.dt));
 
@@ -250,7 +236,7 @@ namespace WeatherAppXam.ViewModels
 
 
                     //8-Days Forecast
-                    foreach (var v in forecastResponse.daily)
+                    foreach (var v in DailyReport)
                     {
                         var date = BaseService.UnixTimeStampToDateTime(Convert.ToDouble(v.dt));
                         SevenDaysSource.Add(new SevenDaysDataModel
@@ -265,17 +251,23 @@ namespace WeatherAppXam.ViewModels
                     }
 
 
-                    CurrentTempC = Convert.ToInt32(forecastResponse.current.temp).ToString();
-                    CurrentHumidity = $"{forecastResponse.current.humidity.ToString()}%";
-                    CurrentWindSpeed = forecastResponse.current.wind_speed.ToString();
-                    CurrentWindDirection = forecastResponse.current.wind_deg.ToString();
-                    CurrentTempIcon = "https://openweathermap.org/img/wn/" + $"{forecastResponse.current.weather[0].icon}@2x.png";
-                    CurrentDescription = forecastResponse.current.weather[0].description;
-                    CurrentLocation = $"{placemarkResult.SubAdminArea}, {placemarkResult.CountryName}";
+                    CurrentTempC = Convert.ToInt32(CurrentReport.temp).ToString();
+                    CurrentHumidity = $"{CurrentReport.humidity.ToString()}%";
+                    CurrentWindSpeed = CurrentReport.wind_speed.ToString();
+                    CurrentWindDirection = CurrentReport.wind_deg.ToString();
+                    CurrentTempIcon = "https://openweathermap.org/img/wn/" + $"{CurrentReport.weather[0].icon}@2x.png";
+                    CurrentDescription = CurrentReport.weather[0].description;
+                    CurrentLocation = $"{SearchCity}, {PlacemarkResult.CountryName}";
+                    //CurrentLocation = $"{PlacemarkResult.SubAdminArea}, {PlacemarkResult.CountryName}";
                 }
+
+                IsLoading = false;
+                IndicatorVisibility = false;
             }
             catch (Exception ex)
             {
+                IsLoading = false;
+                IndicatorVisibility = false;
 
                 toast = DoToast("We encountered an error processing your request. Please try again.", "error");
                 await Application.Current.MainPage.DisplayToastAsync(toast);

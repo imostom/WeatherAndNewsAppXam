@@ -17,6 +17,8 @@ namespace WeatherAppXam.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            Rg.Plugins.Popup.Popup.Init(this);
+
             //this.SetStatusBarColor(Xamarin.Forms.Color.FromHex("#0E3752").ToAndroid());
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

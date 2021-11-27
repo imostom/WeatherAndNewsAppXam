@@ -2,9 +2,110 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherAppXam.Views.SearchPage">
+
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Frame BorderColor="Transparent"
+                   BackgroundColor="Transparent"
+                   HasShadow="False"
+                   WidthRequest="100"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Padding="10">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor"
+                                            Value="Transparent" />
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="Transparent" />
+                                    <Setter Property="BorderColor"
+                                            Value="Transparent" />
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid Margin="4"
+                      WidthRequest="100">
+                    <Grid WidthRequest="18"
+                          HeightRequest="18"
+                          HorizontalOptions="End"
+                          VerticalOptions="Start">
+                        <Ellipse Stroke="{StaticResource BgTextDeepBlue}"
+                                 Fill="Transparent"
+                                 WidthRequest="16"
+                                 HeightRequest="16"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                        <Ellipse x:Name="check"
+                                 Fill="{StaticResource BgTextDeepBlue}"
+                                 WidthRequest="8"
+                                 HeightRequest="8"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                    </Grid>
+                    <ContentPresenter />
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource RadioButtonTemplate}" />
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            
+        
+        
+        
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource BgTextLightGray}" Padding="15,25,15,10">
+
+            <StackLayout Margin="3,0">
+                <Frame Padding="0" Margin="0" BackgroundColor="{StaticResource BgTextLightGray}" CornerRadius="10" HasShadow="False">
+                    <StackLayout>
+                        <Grid Padding="0,1,0,5">
+                            <!--<Image Source="icon_location" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" />-->
+                            <!--<Label Text="Recent News" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource BgTextBlue}"
+                                   HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />-->
+
+                            <SearchBar Grid.Column="0" BackgroundColor="Transparent" Placeholder="Enter search text..." x:Name="searchBar"
+                                       SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                                       FontSize="Small" TextColor="{StaticResource BgTextDeepBlue}" PlaceholderColor="{StaticResource BgTextDeepBlue}"/>
+                        </Grid>
+
+                        <Grid Padding="15,0">
+                            <RadioButton Content="Weather" FontSize="Small" Grid.Column="0" IsChecked="{Binding RadioWeatherChecked}" 
+                                         TextColor="{StaticResource BgTextDeepBlue}" />
+                            <RadioButton Content="News" FontSize="Small" Grid.Column="1" IsChecked="{Binding RadioNewsChecked}" 
+                                         TextColor="{StaticResource BgTextDeepBlue}" />
+
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <Grid Margin="0,18,0,10">
+                <Frame Padding="0" BackgroundColor="{StaticResource BgTextDeepBlueLight}" CornerRadius="10">
+
+                    <StackLayout Margin="0,2,0,2">
+                        <Label Text="Recent Searches" FontSize="Medium" Padding="5,0,0,0" TextColor="{StaticResource BgTextYellow2}" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

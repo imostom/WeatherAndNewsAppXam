@@ -9,7 +9,8 @@
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="BgTextYellow">#F5C945</Color>
-            <Color x:Key="BgTextYellow2">#FFD059</Color>
+            <!--<Color x:Key="BgTextYellow2">#FFD059</Color>-->
+            <Color x:Key="BgTextYellow2">#a88836</Color>
             <Color x:Key="BgTextBlue">#0F2F44</Color>
             <Color x:Key="BgTextBlueLight">#0E3752</Color>
             <Color x:Key="BgTextBlueDark">#0C2738</Color>

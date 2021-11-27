@@ -12,14 +12,20 @@ using WeatherAppXam.Services;
 using Xamarin.CommunityToolkit.UI.Views.Options;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Location = Xamarin.Essentials.Location;
 
 namespace WeatherAppXam.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public static string SearchCity { get; set; }
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public ToastOptions toast = new ToastOptions();
-        public Current CurrentReport { get; set; }
+        public static OpenCurrent CurrentReport { get; set; }
+        public static Daily[] DailyReport { get; set; }
+        public static Hourly[] HourlyReport { get; set; }
+        //public static Location LocationDetails { get; set; }
+        public static Placemark PlacemarkResult { get; set; }
 
         bool isBusy = false;
         public bool IsBusy
