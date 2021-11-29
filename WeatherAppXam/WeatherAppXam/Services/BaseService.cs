@@ -49,6 +49,28 @@ namespace WeatherAppXam.Services
             }
         }
 
+        public static async Task<T> GetAsync<T>(string url)
+        {
+            var json = string.Empty;
+            client = new HttpClient();
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    //var json2 = client.GetStringAsync(url).Result;
+                    json = await client.GetStringAsync(url);
+
+                }
+                return JsonConvert.DeserializeObject<T>(json);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unable to get information from server {ex}");
+                throw ex;
+            }
+        }
+
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch

@@ -2,24 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherAppXam.Views.NewsPage"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Visual="Material">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource BgTextWhite}" Padding="15,25,15,10">
 
-                <StackLayout Margin="10,0">
-                    <Frame Padding="0" BackgroundColor="{StaticResource BgTextWhite}" BorderColor="{StaticResource BgTextBlue}" CornerRadius="10" HasShadow="False">
+                <StackLayout Margin="3,0" VerticalOptions="Start">
+                    <Frame Padding="0" Margin="0" BackgroundColor="{StaticResource BgTextWhite}" CornerRadius="10" HasShadow="False"
+                           BorderColor="{StaticResource BgTextDeepBlue}">
+                        <StackLayout>
+                            <Grid Padding="0,1,0,0">
+
+                                <SearchBar Grid.Column="0" BackgroundColor="Transparent" Placeholder="Search News..." x:Name="searchBar"
+                                       SearchCommand="{Binding PerformSearch}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                                       FontSize="Medium" TextColor="{StaticResource BgTextDeepBlue}" PlaceholderColor="{StaticResource BgTextDeepBlue}"/>
+                            </Grid>
+
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <!--<StackLayout Margin="10,0">
+                    <Frame Padding="0" BackgroundColor="{StaticResource BgTextWhite}" BorderColor="Transparent" CornerRadius="10" HasShadow="False">
                         <StackLayout Padding="10,15,0,15" Orientation="Horizontal">
-                            <!--<Image Source="icon_location" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" />-->
                             <Label Text="Recent News" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource BgTextBlue}"
                                    HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
                         </StackLayout>
                     </Frame>
-                </StackLayout>
-                
+                </StackLayout>-->
+
                 <ActivityIndicator VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IndicatorVisibility}" IsRunning="{Binding IsLoading}" 
                                        HeightRequest="40" Grid.Row="4" Grid.Column="4" Color="{StaticResource BgTextDeepBlue}" Margin="0,5,0,0" />
-                
+
                 <Grid Margin="0,15 ,0,30">
 
                     <Frame Padding="0" BackgroundColor="Transparent" BorderColor="Transparent" CornerRadius="10" HasShadow="False">
@@ -29,21 +44,21 @@
                                 <Frame CornerRadius="5" Padding="5" Margin="0" BackgroundColor="Transparent" HasShadow="False">
                                     <CollectionView ItemsSource="{Binding NewsSource}">
                                         <CollectionView.ItemsLayout>
-                                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="3" />
+                                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
                                         </CollectionView.ItemsLayout>
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout Margin="0,10,0,20" BackgroundColor="Transparent">
-                                                    <Frame CornerRadius="5" BackgroundColor="{StaticResource BgTextWhite}" Padding="5" Margin="0"  HasShadow="True">
+                                                <StackLayout Margin="0,0,0,0" BackgroundColor="Transparent">
+                                                    <Frame CornerRadius="5" BackgroundColor="{StaticResource BgTextWhite}" Padding="5,15,5,0" Margin="0"  HasShadow="false">
 
-                                                        <Grid Padding="3"  VerticalOptions="Start" ColumnSpacing="0" RowSpacing="0">
+                                                        <Grid Padding="3,3,3,0"  VerticalOptions="Start" ColumnSpacing="0" RowSpacing="0">
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="auto" />
                                                                 <RowDefinition Height="auto" />
                                                                 <RowDefinition Height="auto" />
                                                                 <RowDefinition Height="auto" />
                                                                 <RowDefinition Height="auto" />
-                                                                <RowDefinition Height="auto" />
+                                                                <RowDefinition Height="*" />
                                                             </Grid.RowDefinitions>
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="*" />
@@ -55,31 +70,35 @@
                                                                 <TapGestureRecognizer x:Name="NewsItem" Tapped="NewsItem_Tapped" CommandParameter="{Binding Url}" />
                                                             </Grid.GestureRecognizers>
 
-                                                            <Frame CornerRadius="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0" Padding="0" HasShadow="False">
+                                                            <Frame CornerRadius="5" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0" Padding="0" HasShadow="False">
                                                                 <Image Source="{Binding NewsImage}" HorizontalOptions="StartAndExpand" 
                                                                     />
                                                             </Frame>
-                                                            <!--<Image Source="{Binding NewsImage}" HorizontalOptions="StartAndExpand" 
-                                                                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0" />-->
+
                                                             <Label Text="{Binding NewsTitle}" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Start" 
                                                                 Padding="5" Margin="0" TextColor="{StaticResource BgTextDeepBlue}" Grid.Row="2" Grid.ColumnSpan="3" />
-                                                            <!--<Label Text="{Binding NewsDescription}" FontAttributes="None" FontSize="16" HorizontalTextAlignment="Center" 
-                                                                Padding="5" Margin="0" TextColor="{StaticResource BgTextDeepBlue}" Grid.Row="3" Grid.ColumnSpan="3"/>-->
+
                                                             <Label Text="{Binding Url}" FontAttributes="None" FontSize="15" HorizontalTextAlignment="Center" IsVisible="False"
                                                                 Padding="0" Margin="0" TextColor="{StaticResource BgTextDeepBlue}" Grid.Row="4" Grid.ColumnSpan="3"/>
-                                                            
+
                                                             <StackLayout Grid.ColumnSpan="3" Grid.Row="5" BackgroundColor="Transparent" Orientation="Horizontal" Margin="0,10,0,0" >
-                                                                
-                                                                <Label Text="{Binding Source}" FontSize="14" FontAttributes="None" HorizontalTextAlignment="End"
-                                           TextColor="{StaticResource BgTextBlueDark}" VerticalTextAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="Transparent"/>
 
-                                                                <Image Source="icon_copy2" WidthRequest="22" HeightRequest="22" Grid.Column="2" IsVisible="False"
-                                                                       BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
-                                                                    
+                                                                <Label Text="{Binding Source}" FontSize="14" FontAttributes="None" HorizontalTextAlignment="Start"
+                                                                TextColor="{StaticResource BgTextBlueDark}" VerticalTextAlignment="Center" 
+                                                                   BackgroundColor="Transparent"/>
+
+                                                                <!--<Image Source="icon_copy2" WidthRequest="22" HeightRequest="22" Grid.Column="2" IsVisible="False"
+                                                                BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />-->
+
+                                                                <!--<Label Text="{Binding PublishedAt}" FontSize="14" FontAttributes="None" HorizontalTextAlignment="End"
+                                                                TextColor="{StaticResource BgTextBlueDark}" VerticalTextAlignment="Center"  
+                                                                   BackgroundColor="Transparent"/>-->
+
                                                             </StackLayout>
+                                                            <Line Stroke="{StaticResource BgTextDarkGray}" X2="350" Grid.Row="6" Grid.ColumnSpan="3" Margin="0,20,0,15" />
 
-                                                            <BoxView HorizontalOptions="Center" HeightRequest="0" WidthRequest="1" Color="{StaticResource BgTextBlue}" 
-                                                            Grid.Row="6" Grid.ColumnSpan="3" Margin="0,20,0,10"/>
+                                                            <!--<BoxView HorizontalOptions="Center" HeightRequest="1" WidthRequest="1" Color="{StaticResource BgTextBlue}" 
+                                                            Grid.Row="6" Grid.ColumnSpan="3" Margin="0,20,0,10"/>-->
                                                         </Grid>
 
                                                     </Frame>

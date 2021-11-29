@@ -10,7 +10,7 @@
             <StackLayout Margin="3,0" IsVisible="{Binding SearcStackVisible}" VerticalOptions="Start">
                 <Frame Padding="0" Margin="0" BackgroundColor="{StaticResource BgTextDeepBlueLight}" CornerRadius="10" HasShadow="False">
                     <StackLayout>
-                        <Grid Padding="0,1,0,5">
+                        <Grid Padding="0,1,0,0">
                             <!--<Image Source="icon_location" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" />-->
                             <!--<Label Text="Recent News" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource BgTextBlue}"
                                    HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />-->

@@ -228,7 +228,7 @@ namespace WeatherAppXam.ViewModels
                 HourlySource = new ObservableCollection<OpenWeatherHourly>();
                 SevenDaysSource = new ObservableCollection<SevenDaysDataModel>();
 
-                var forecastResponse = await ApiService.GetForecastOpenWeather(endpoint);
+                var forecastResponse = await ApiService.GetForecastOpenWeather2(endpoint);
                 if (forecastResponse != null)
                 {
                     IsLoading = false;

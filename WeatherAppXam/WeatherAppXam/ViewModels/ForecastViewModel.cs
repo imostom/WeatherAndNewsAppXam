@@ -231,7 +231,8 @@ namespace WeatherAppXam.ViewModels
                     .Replace("{lon}", longitude.ToString()).Replace("{APIkey}", Constants.OpenWeatherApiKey);
                 var endpoint = $"{Constants.OpenWeatherApiBaseUrl}{resource}";
 
-                var forecastResponse = await ApiService.GetForecastOpenWeather(endpoint);
+                var forecastResponse = await ApiService.GetForecastOpenWeather2(endpoint);
+                //var forecastResponse = await ApiService.GetForecastOpenWeather(endpoint);
                 if (forecastResponse != null)
                 {
                     IsLoading = false;
