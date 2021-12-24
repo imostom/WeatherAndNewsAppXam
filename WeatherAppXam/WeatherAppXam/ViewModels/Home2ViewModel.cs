@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using WeatherAppXam.Models;
 using WeatherAppXam.Services;
 using Xamarin.CommunityToolkit.Extensions;
@@ -175,6 +176,16 @@ namespace WeatherAppXam.ViewModels
                 OnPropertyChanged("IsLoading");
             }
         }
+        bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
 
         public string tempMetric { get; set; }
         public string dateLocation { get; set; }
@@ -193,6 +204,8 @@ namespace WeatherAppXam.ViewModels
 
         public Home2ViewModel()
         {
+            RefreshCommand = new Command(ExecuteRefreshCommand);
+
             ShowLoader();
 
             LoadOpenWeatherForecast();
@@ -280,6 +293,18 @@ namespace WeatherAppXam.ViewModels
                 toast = DoToast("We encountered an error processing your request. Please try again.", "error");
                 await Application.Current.MainPage.DisplayToastAsync(toast);
             }
+        }
+
+        public ICommand RefreshCommand { get; }
+
+
+
+        void ExecuteRefreshCommand()
+        {
+            LoadOpenWeatherForecast();
+
+            // Stop refreshing
+            IsRefreshing = false;
         }
     }
 }

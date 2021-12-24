@@ -45,11 +45,12 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkTool>r8</AndroidLinkTool>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <BundleAssemblies>true</BundleAssemblies>
-    <AotAssemblies>true</AotAssemblies>
-    <EnableLLVM>true</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -140,9 +141,6 @@
     <AndroidResource Include="Resources\drawable\weatherTextLightBlue2.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\wn_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\wn_logo2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +211,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon_search2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\wn.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

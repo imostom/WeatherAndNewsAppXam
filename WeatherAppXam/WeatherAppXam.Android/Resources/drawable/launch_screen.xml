@@ -4,7 +4,7 @@
 
 	<item>
 		<bitmap 
-			android:src="@drawable/wn_logo3" 
+			android:src="@drawable/wn" 
 			android:gravity="center_vertical" 
 			android:tileMode="disabled" />
 	</item>

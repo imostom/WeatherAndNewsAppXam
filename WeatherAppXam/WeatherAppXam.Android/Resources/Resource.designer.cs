@@ -24949,7 +24949,7 @@ namespace WeatherAppXam.Droid
 			public const int weatherTextLightBlue2 = 2131165343;
 			
 			// aapt resource value: 0x7F0700A0
-			public const int wn_logo = 2131165344;
+			public const int wn = 2131165344;
 			
 			// aapt resource value: 0x7F0700A1
 			public const int wn_logo2 = 2131165345;

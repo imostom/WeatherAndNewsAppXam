@@ -35,7 +35,7 @@
         <!--<ShellContent Title="Search" Icon="icon_search2.png" Route="SearchPage" ContentTemplate="{DataTemplate local:SearchPage}" />-->
         <ShellContent Title="Forecast" Icon="icon_graph.png" Route="ForecastPage" ContentTemplate="{DataTemplate local:ForecastPage}" />
         <!--<ShellContent Title="Notifications" Icon="icon_notification.png" Route="NewsPage" ContentTemplate="{DataTemplate local:SearchPage}" />-->
-        <ShellContent Title="News" Icon="icon_news2.png" Route="NewsPage" ContentTemplate="{DataTemplate local:NewsPage}" />
+        <!--<ShellContent Title="News" Icon="icon_news2.png" Route="NewsPage" ContentTemplate="{DataTemplate local:NewsPage}" />-->
 
         <!--<ShellContent Title="About" Icon="icon_about2.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
         <ShellContent Title="Browse" Icon="icon_feed2.png" ContentTemplate="{DataTemplate local:ItemsPage}" />-->
